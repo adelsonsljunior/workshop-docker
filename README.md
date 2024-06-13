@@ -6,7 +6,7 @@
 
 O Docker é uma plataforma open source que facilita a criação e administração de ambientes isolados (containers)
 
-## Diferença entre VM e Container
+## Diferença entre Container e VM
 
 ![](https://4linux.com.br/wp-content/uploads/2021/08/imagem-1024x594.png)
 
@@ -18,11 +18,11 @@ O Docker é uma plataforma open source que facilita a criação e administraçã
 $ curl -fsSL https://get.docker.com | sudo bash
 ~~~
 
-+ Outros Sistemas.
++ Outros Sistemas:
 
     [DOCUMENTAÇÃO](https://docs.docker.com/get-docker/)
 
-## Comandos
+## Comandos Básicos
 
 + Baixar imagem
 
@@ -77,7 +77,7 @@ $ docker rmi nginx # docker image rm nginx
 + Postgres
 
 ~~~bash
-$ docker run -d --rm --name postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_DB=workshop -e POSTGRES_PASSWORD=password postgres:16.3
+$ docker run -d --rm --name postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_DB=workshop -e POSTGRES_PASSWORD=1234 postgres:16.3
 ~~~
 
 ## Dockerfile
@@ -106,7 +106,7 @@ $ docker build -t workshopdb:1.0 .
 ~~~
 
 ~~~bash
-$ docker run -d --rm --name postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_DB=workshop -e POSTGRES_PASSWORD=password workshop:1.0
+$ docker run -d --rm --name workshopdb -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_DB=workshop -e POSTGRES_PASSWORD=1234 workshopdb:1.0
 ~~~
 
 ## Compose
@@ -124,7 +124,7 @@ services:
       - 5432:5431
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: 1234
       POSTGRES_DB: workshop
     volumes:
       - postgres:/var/lib/postgresql/data  
