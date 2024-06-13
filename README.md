@@ -82,35 +82,31 @@ $ docker run -d --rm --name postgres -p 5432:5432 -e POSTGRES_USER=postgres -e P
 
 ## Dockerfile
 
-+ moo
+database.sql
+
+~~~sql
+CREATE TABLE users(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(60) NOT NULL,
+	email VARCHAR(60) UNIQUE NOT NULL,
+	password VARCHAR(60) NOT NULL
+);
+~~~
+
+Dockerfile
 
 ~~~dockerfile
-FROM ubuntu:24.04
-CMD ["apt", "moo"]
+FROM postgres:16.3
+
+COPY ./database.sql /docker-entrypoint-initdb.d/
 ~~~
 
 ~~~bash
-$ docker build -t moo . 
+$ docker build -t workshopdb:1.0 . 
 ~~~
 
 ~~~bash
-$ docker run --rm moo
-~~~
-
-+ neofetch
-
-~~~dockerfile
-FROM ubuntu:24.04
-RUN apt update -y && apt install neofetch -y
-CMD ["neofetch"]
-~~~
-
-~~~bash
-$ docker build -t neofetch . 
-~~~
-
-~~~bash
-$ docker run --rm  neofetch
+$ docker run -d --rm --name postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_DB=workshop -e POSTGRES_PASSWORD=password workshop:1.0
 ~~~
 
 ## Compose
@@ -141,6 +137,10 @@ volumes:
 $ docker compose up
 ~~~
 
+~~~bash
+$ docker compose down
+~~~
+
 ### Usando .env
 
 .env
@@ -149,7 +149,7 @@ $ docker compose up
 #DATABASE
 DB_PORT=5432
 DB_USER=postgres
-DB_PASSWORD=password
+DB_PASSWORD=1234
 DB_NAME=workshop
 ~~~
 
