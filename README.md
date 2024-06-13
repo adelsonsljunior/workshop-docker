@@ -36,7 +36,7 @@ $ docker pull ubuntu
 $ docker images # docker image ls
 ~~~
 
-+ Rodandar um container
++ Rodar um container
 	flags: -it, -d e muitas outras
 
 ~~~bash
@@ -66,7 +66,7 @@ $ docker stop nginx # docker container stop nginx
 $ docker rm nginx # docker container rm ngnix
 ~~~
 
-+ Remover containers e imagens
++ Remover imagens
 
 ~~~bash
 $ docker rmi nginx # docker image rm nginx
